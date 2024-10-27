@@ -1,0 +1,62 @@
+name: CI/CD for Nuxt 3
+
+on:
+  push:
+    branches:
+      - main # Виконувати на кожний push в main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint code with ESLint
+        run: npm run lint
+
+      # - name: Run tests
+      #   run: npm run test
+
+      - name: Build project
+        run: npm run build
+
+      - name: Upload artifacts (optional)
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: nuxt-build
+          path: .output/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: npx netlify deploy --dir=.output --prod
