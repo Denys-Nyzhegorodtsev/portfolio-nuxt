@@ -39,7 +39,7 @@ jobs:
       #   run: npm run test
 
       - name: Build project
-        run: npm run build
+        run: npm run build --verbose
 
       - name: Upload artifacts (optional)
         if: success()
