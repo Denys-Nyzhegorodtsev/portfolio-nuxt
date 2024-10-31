@@ -36,19 +36,15 @@ jobs:
       - name: Generate static site with Nitro
         run: npx nuxi generate
 
-      - name: Check .output directory
-        run: |
-          echo "Listing files in current directory:"
-          ls -la
-          echo "Listing files in .output directory:"
-          ls -R .output || echo ".output directory not found"
+      - name: List contents of .output directory (for debugging)
+        run: ls -R .output
 
       - name: Upload build artifacts
-        if: success()
         uses: actions/upload-artifact@v3
         with:
           name: nuxt-build
-          path: .output/
+          path: .output/**/*
+          if-no-files-found: warn
 
   deploy:
     needs: build
