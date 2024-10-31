@@ -1,7 +1,7 @@
 name: CI/CD for Nuxt 3
 
 on:
-  workflow_dispatch: # Запускає workflow тільки вручну
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,6 +15,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+
+      - name: Clean npm cache
+        run: npm cache clean --force
 
       - name: Cache Node.js modules
         uses: actions/cache@v3
@@ -32,6 +35,12 @@ jobs:
 
       - name: Build project
         run: npm run build --verbose
+
+      - name: Generate static site with Nitro
+        run: npx nuxi generate
+
+      - name: List output directory (for debugging)
+        run: ls -R .output
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
