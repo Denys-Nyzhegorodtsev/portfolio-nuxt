@@ -16,9 +16,6 @@ jobs:
         with:
           node-version: 18
 
-      - name: Clean npm cache
-        run: npm cache clean --force
-
       - name: Cache Node.js modules
         uses: actions/cache@v3
         with:
@@ -36,9 +33,6 @@ jobs:
       - name: Build project
         run: npm run build --verbose
 
-      - name: Generate static site with Nitro
-        run: npx nuxi generate
-
       - name: List output directory (for debugging)
         run: ls -R .output
 
@@ -46,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: nuxt-build
-          path: .output/
+          path: .output/ # Указуємо, що саме потрібно зберегти
 
   deploy:
     needs: build
