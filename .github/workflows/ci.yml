@@ -3,10 +3,11 @@ name: CI/CD for Nuxt 3
 on:
   push:
     branches:
-      - main # Виконувати на кожний push в main
+      - main
   pull_request:
     branches:
       - main
+  workflow_dispatch: # Додаємо подію для ручного запуску
 
 jobs:
   build:
@@ -41,16 +42,17 @@ jobs:
       - name: Build project
         run: npm run build --verbose
 
-      - name: Upload artifacts (optional)
-        if: success()
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: nuxt-build
           path: .output/
 
   deploy:
+    # Налаштовуємо запуск лише вручну через workflow_dispatch
     needs: build
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' # Додаємо умову
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -63,6 +65,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: nuxt-build
+          path: .output
+
       - name: Install Netlify CLI
         run: npm install netlify-cli --global
 
@@ -70,4 +78,4 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: npx netlify deploy --dir=.output/public --prod
+        run: npx netlify deploy --dir=.output --prod
