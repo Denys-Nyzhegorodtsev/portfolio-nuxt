@@ -51,10 +51,15 @@ jobs:
             exit 1
           fi
 
-      - name: List all files and directories
+      - name: List all files and directories recursively
         run: |
-          echo "Listing all files and directories recursively:"
+          echo "Listing all files and directories recursively in the root:"
           find . -type f
+
+      - name: List contents of .output directory
+        run: |
+          echo "Listing all files in .output directory:"
+          ls -R .output || echo ".output directory not found or empty."
 
       - name: Upload build artifacts
         if: success()
