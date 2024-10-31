@@ -33,14 +33,22 @@ jobs:
       - name: Build project
         run: npm run build --verbose
 
-      - name: List output directory (for debugging)
-        run: ls -R .output
+      - name: Generate static site with Nitro
+        run: npx nuxi generate
+
+      - name: Check .output directory
+        run: |
+          echo "Listing files in current directory:"
+          ls -la
+          echo "Listing files in .output directory:"
+          ls -R .output || echo ".output directory not found"
 
       - name: Upload build artifacts
+        if: success()
         uses: actions/upload-artifact@v3
         with:
           name: nuxt-build
-          path: .output/ # Указуємо, що саме потрібно зберегти
+          path: .output/
 
   deploy:
     needs: build
@@ -70,4 +78,4 @@ jobs:
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: npx netlify deploy --dir=.output/public --prod
+        run: npx netlify deploy --dir=.output --prod
