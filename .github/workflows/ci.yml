@@ -36,42 +36,7 @@ jobs:
       - name: Generate static site with Nitro
         run: npx nuxi generate
 
-      - name: List contents of .output directory (for debugging)
-        run: ls -R .output
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: nuxt-build
-          path: .output/**/*
-          if-no-files-found: warn
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: nuxt-build
-          path: .output
-
-      - name: Install Netlify CLI
-        run: npm install netlify-cli --global
-
-      - name: Deploy to Netlify
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        run: npx netlify deploy --dir=.output --prod
+      - name: List all files and directories after build
+        run: |
+          echo "Listing all files and directories recursively:"
+          find . -type f
