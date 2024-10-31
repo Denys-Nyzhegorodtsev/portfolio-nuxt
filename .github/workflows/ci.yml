@@ -1,7 +1,7 @@
 name: CI/CD for Nuxt 3
 
 on:
-  workflow_dispatch: # Лише для ручного запуску
+  workflow_dispatch: # Запускає workflow тільки вручну
 
 jobs:
   build:
