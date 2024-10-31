@@ -1,12 +1,7 @@
 name: CI/CD for Nuxt 3
 
 on:
-  push:
-    branches:
-      - main # Виконувати на кожний push в main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch: # Запускає workflow тільки вручну
 
 jobs:
   build:
@@ -35,14 +30,10 @@ jobs:
       - name: Lint code with ESLint
         run: npm run lint
 
-      # - name: Run tests
-      #   run: npm run test
-
       - name: Build project
-        run: npm run build
+        run: npm run build --verbose
 
-      - name: Upload artifacts (optional)
-        if: success()
+      - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
           name: nuxt-build
@@ -62,6 +53,12 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: nuxt-build
+          path: .output
 
       - name: Install Netlify CLI
         run: npm install netlify-cli --global
