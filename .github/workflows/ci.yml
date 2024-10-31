@@ -31,16 +31,10 @@ jobs:
         run: npm run lint
 
       - name: Build project
-        run: |
-          set -e
-          npm run build --verbose
-          echo "Build completed. Checking if .output was created."
+        run: npm run build --verbose
 
       - name: Generate static site with Nitro
-        run: |
-          set -e
-          npx nuxi generate
-          echo "Static site generation completed."
+        run: npx nuxi generate
 
       - name: Check if .output directory exists
         run: |
@@ -51,20 +45,44 @@ jobs:
             exit 1
           fi
 
-      - name: List all files and directories recursively
-        run: |
-          echo "Listing all files and directories recursively in the root:"
-          find . -type f
-
       - name: List contents of .output directory
         run: |
           echo "Listing all files in .output directory:"
           ls -R .output || echo ".output directory not found or empty."
 
       - name: Upload build artifacts
-        if: success()
         uses: actions/upload-artifact@v3
         with:
           name: nuxt-build
-          path: .output/**
+          path: .output/public/**
           if-no-files-found: warn
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: nuxt-build
+          path: .output/public
+
+      - name: Install Netlify CLI
+        run: npm install netlify-cli --global
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: npx netlify deploy --dir=.output/public --prod
