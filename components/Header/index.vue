@@ -8,8 +8,6 @@
   </header>
 </template>
 
-<script lang="ts" setup>
-  console.log('header');
-</script>
+<script lang="ts" setup></script>
 
 <style module type="scss" src="./Header.module.scss"></style>
