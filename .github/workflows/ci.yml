@@ -1,13 +1,7 @@
 name: CI/CD for Nuxt 3
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
-  workflow_dispatch: # Додаємо подію для ручного запуску
+  workflow_dispatch: # Лише для ручного запуску
 
 jobs:
   build:
@@ -36,9 +30,6 @@ jobs:
       - name: Lint code with ESLint
         run: npm run lint
 
-      # - name: Run tests
-      #   run: npm run test
-
       - name: Build project
         run: npm run build --verbose
 
@@ -49,10 +40,8 @@ jobs:
           path: .output/
 
   deploy:
-    # Налаштовуємо запуск лише вручну через workflow_dispatch
     needs: build
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' # Додаємо умову
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
