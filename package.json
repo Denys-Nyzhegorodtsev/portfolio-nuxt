@@ -3,25 +3,34 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "vitest run"
   },
   "dependencies": {
     "nuxt": "^3.13.2",
-    "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@nuxt/eslint-config": "^0.6.0",
     "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vue/test-utils": "^2.4.6",
     "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-nuxt": "^4.0.0",
-    "eslint-plugin-vue": "^9.29.1"
+    "eslint-plugin-vue": "^9.29.1",
+    "husky": "^9.1.6",
+    "jsdom": "^25.0.1",
+    "sass": "^1.80.5",
+    "sass-loader": "^16.0.2",
+    "vitest": "^2.1.4",
+    "vue": "^3.5.12"
   }
 }
