@@ -3,11 +3,17 @@ import { mount } from '@vue/test-utils';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import Header from './index.vue';
 
-// Створюємо глобальний мок для useNuxtApp
+// Оголошуємо тип для useNuxtApp
+interface NuxtAppMock {
+  $toggleTheme: ReturnType<typeof vi.fn>;
+}
+
+// Створюємо глобальний мок для useNuxtApp з точним типом
 beforeEach(() => {
-  (global as any).useNuxtApp = () => ({
-    $toggleTheme: vi.fn(),
-  });
+  (global as any).useNuxtApp = () =>
+    ({
+      $toggleTheme: vi.fn(),
+    } as unknown as NuxtAppMock); // Проміжне перетворення типу для уникнення конфліктів
 });
 
 describe('Header Component', () => {
@@ -45,7 +51,7 @@ describe('Header Component', () => {
   });
 
   it('calls $toggleTheme when triggered', () => {
-    const { $toggleTheme } = useNuxtApp() as any;
+    const { $toggleTheme } = useNuxtApp() as unknown as NuxtAppMock;
 
     expect($toggleTheme).not.toHaveBeenCalled();
     $toggleTheme();
