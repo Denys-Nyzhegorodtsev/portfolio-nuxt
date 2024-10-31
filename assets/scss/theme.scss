@@ -1,0 +1,13 @@
+// Світла тема
+:root {
+  --primary-color: #ffffff;
+  --secondary-color: #f0f0f0;
+  --text-color: #333333;
+}
+
+// Темна тема
+[data-theme='dark'] {
+  --primary-color: #1e1e1e;
+  --secondary-color: #333333;
+  --text-color: #ffffff;
+}

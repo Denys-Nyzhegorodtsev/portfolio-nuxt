@@ -6,7 +6,15 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
+  css: ['@/assets/scss/theme.scss'],
   vite: {
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: `@use "/assets/scss/variables.scss";`,
+        },
+      },
+    },
     test: {
       environment: 'jsdom',
       globals: true,

@@ -1,7 +1,14 @@
 // components/Header/Header.test.ts
 import { mount } from '@vue/test-utils';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
 import Header from './index.vue';
+
+// Створюємо глобальний мок для useNuxtApp
+beforeEach(() => {
+  (global as any).useNuxtApp = () => ({
+    $toggleTheme: vi.fn(),
+  });
+});
 
 describe('Header Component', () => {
   it('renders the NuxtLink with the correct text', () => {
@@ -9,13 +16,12 @@ describe('Header Component', () => {
       global: {
         stubs: {
           NuxtLink: {
-            template: '<a><slot /></a>', // Замінюємо NuxtLink на простий <a> в тестах
+            template: '<a><slot /></a>',
           },
         },
       },
     });
 
-    // Перевіряємо, чи існує NuxtLink, замінений на <a>, з текстом "Logo"
     const logoLink = wrapper.find('a');
     expect(logoLink.exists()).toBe(true);
     expect(logoLink.text()).toBe('Logo');
@@ -26,19 +32,23 @@ describe('Header Component', () => {
       global: {
         stubs: {
           NuxtLink: {
-            template: '<a><slot /></a>', // Замінюємо NuxtLink на <a> для всіх тестів цього компонента
+            template: '<a><slot /></a>',
           },
         },
       },
     });
 
-    // Перевіряємо, чи заголовок містить правильний текст і клас
     const title = wrapper.find('h1');
     expect(title.exists()).toBe(true);
     expect(title.text()).toBe('Header');
+    expect(title.classes().length).toBeGreaterThan(0);
+  });
 
-    // Оскільки ми використовуємо модульні стилі, клас буде змінено на унікальний і перевірити конкретну назву класу складно.
-    // Однак, ми можемо перевірити, чи заголовок має клас.
-    expect(title.classes().length).toBeGreaterThan(0); // Має містити хоч один клас
+  it('calls $toggleTheme when triggered', () => {
+    const { $toggleTheme } = useNuxtApp() as any;
+
+    expect($toggleTheme).not.toHaveBeenCalled();
+    $toggleTheme();
+    expect($toggleTheme).toHaveBeenCalled();
   });
 });
