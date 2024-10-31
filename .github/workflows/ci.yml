@@ -1,4 +1,4 @@
-name: CI/CD for Nuxt 3
+name: CI/CD Pipeline
 
 on:
   workflow_dispatch:
@@ -26,6 +26,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Run tests
+        run: npm test -- --run
 
       - name: Lint code with ESLint
         run: npm run lint
