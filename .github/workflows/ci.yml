@@ -31,12 +31,35 @@ jobs:
         run: npm run lint
 
       - name: Build project
-        run: npm run build --verbose
+        run: |
+          set -e
+          npm run build --verbose
+          echo "Build completed. Checking if .output was created."
 
       - name: Generate static site with Nitro
-        run: npx nuxi generate
+        run: |
+          set -e
+          npx nuxi generate
+          echo "Static site generation completed."
 
-      - name: List all files and directories after build
+      - name: Check if .output directory exists
+        run: |
+          if [ -d ".output" ]; then
+            echo ".output directory exists."
+          else
+            echo ".output directory does NOT exist."
+            exit 1
+          fi
+
+      - name: List all files and directories
         run: |
           echo "Listing all files and directories recursively:"
           find . -type f
+
+      - name: Upload build artifacts
+        if: success()
+        uses: actions/upload-artifact@v3
+        with:
+          name: nuxt-build
+          path: .output/**
+          if-no-files-found: warn
