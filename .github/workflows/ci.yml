@@ -14,7 +14,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Cache Node.js modules
         uses: actions/cache@v3
@@ -54,7 +54,7 @@ jobs:
           ls -R .output || echo ".output directory not found or empty."
 
       - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: nuxt-build
           path: .output/public/**
