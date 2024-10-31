@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
   nitro: {
@@ -7,4 +6,11 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
+  vite: {
+    test: {
+      environment: 'jsdom',
+      globals: true,
+      include: ['components/**/*.test.ts'],
+    },
+  },
 });
