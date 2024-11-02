@@ -4,8 +4,18 @@
 
     <div>
       <h1 :class="$style.title">Header</h1>
+      <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
     </div>
-    <button @click="$toggleTheme()">Змінити тему</button>
+    <div>
+      <form>
+        <label for="locale-select">{{ $t('language') }}: </label>
+        <select id="locale-select" v-model="$i18n.locale">
+          <option value="en">en</option>
+          <option value="ua">ua</option>
+        </select>
+      </form>
+      <button @click="$toggleTheme()">Змінити тему</button>
+    </div>
   </header>
 </template>
 
