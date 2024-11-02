@@ -11,8 +11,7 @@
         <label for="locale-select">{{ $t('language') }}: </label>
         <select id="locale-select" v-model="$i18n.locale">
           <option value="en">en</option>
-          <option value="fr">fr</option>
-          <option value="ja">ja</option>
+          <option value="ua">ua</option>
         </select>
       </form>
       <button @click="$toggleTheme()">Змінити тему</button>
