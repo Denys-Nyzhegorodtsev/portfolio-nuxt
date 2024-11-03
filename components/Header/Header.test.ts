@@ -5,6 +5,7 @@ import Header from './index.vue';
 import { createI18n } from 'vue-i18n';
 import en from '../../locales/en.json';
 import ua from '../../locales/ua.json';
+import { useNuxtApp } from '../../__mocks__/app';
 
 const i18n = createI18n({
   legacy: false,
@@ -15,7 +16,31 @@ const i18n = createI18n({
   },
 });
 
-// Визначаємо глобальний мок без перевірки на `NuxtApp`
+beforeEach(() => {
+  // Використовуємо мок для `useNuxtApp`
+  (
+    global as unknown as {
+      useNuxtApp: () => { $toggleTheme: ReturnType<typeof vi.fn> };
+    }
+  ).useNuxtApp = () => ({
+    $toggleTheme: vi.fn(),
+  });
+});
+
+// Мок для `useRouter`
+vi.mock('vue-router', () => ({
+  useRouter: () => ({
+    push: vi.fn(),
+  }),
+  useRoute: () => ({
+    params: {
+      locale: 'en', // Початкова локаль, яку можна змінювати для тестів
+    },
+    path: '/',
+  }),
+}));
+
+// Визначаємо глобальний мок для `NuxtApp`
 beforeEach(() => {
   (
     global as unknown as {

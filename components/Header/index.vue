@@ -1,7 +1,6 @@
 <template>
   <header>
     <NuxtLink to="/">Logo</NuxtLink>
-
     <div>
       <h1 :class="$style.title">Header</h1>
       <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
@@ -9,7 +8,11 @@
     <div>
       <form>
         <label for="locale-select">{{ $t('language') }}: </label>
-        <select id="locale-select" v-model="$i18n.locale">
+        <select
+          id="locale-select"
+          v-model="selectedLocale"
+          @change="changeLocale"
+        >
           <option value="en">en</option>
           <option value="ua">ua</option>
         </select>
@@ -20,7 +23,47 @@
 </template>
 
 <script lang="ts" setup>
-  const { $toggleTheme } = useNuxtApp();
+  import { ref, watch, onMounted } from 'vue';
+  import { useRouter, useRoute } from 'vue-router';
+  import { useI18n } from 'vue-i18n';
+  import { useNuxtApp } from '#app';
+
+  const { locale } = useI18n();
+  const router = useRouter();
+  const route = useRoute();
+  const nuxtApp = useNuxtApp();
+
+  // Оголошуємо $toggleTheme явно
+  const $toggleTheme = nuxtApp.$toggleTheme as () => void;
+
+  // Ініціалізуємо `selectedLocale` зі значенням `locale.value`
+  const selectedLocale = ref(locale.value);
+
+  const changeLocale = async () => {
+    const basePath = route.path.replace(/^\/(en|ua)/, ''); // Очищаємо URL від попередньої локалі
+    await router.push(`/${selectedLocale.value}${basePath}`); // Додаємо нову локаль до URL
+    locale.value = selectedLocale.value; // Оновлюємо значення локалі
+  };
+
+  // Спостерігаємо за змінами параметра `locale` в URL
+  watch(
+    () => route.params.locale,
+    (newLocale) => {
+      const normalizedLocale = Array.isArray(newLocale)
+        ? newLocale[0]
+        : newLocale;
+      if (normalizedLocale && normalizedLocale !== locale.value) {
+        locale.value = normalizedLocale; // Оновлюємо поточну локаль
+        selectedLocale.value = normalizedLocale; // Оновлюємо вибрану локаль
+      }
+    },
+    { immediate: true } // Викликаємо watch одразу при завантаженні
+  );
+
+  // Синхронізуємо `selectedLocale` при завантаженні сторінки
+  onMounted(() => {
+    selectedLocale.value = locale.value;
+  });
 </script>
 
 <style module type="scss" src="./Header.module.scss"></style>
