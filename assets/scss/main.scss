@@ -1,0 +1,29 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+#__nuxt {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-wrapper {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 23px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.flex-r {
+  @include flex;
+  flex-direction: row;
+}
+
+.flex-c {
+  @include flex;
+  flex-direction: column;
+}

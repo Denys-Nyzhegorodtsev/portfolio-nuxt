@@ -8,12 +8,16 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
-  css: ['@/assets/scss/theme.scss'],
+  css: ['@/assets/scss/theme.scss', '@/assets/scss/main.scss'],
   vite: {
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "/assets/scss/variables.scss";`,
+          additionalData: `
+          @use "/assets/scss/reset.scss";
+          @use "/assets/scss/variables.scss";
+          @use "/assets/scss/mixins.scss" as *;
+          `,
         },
       },
     },

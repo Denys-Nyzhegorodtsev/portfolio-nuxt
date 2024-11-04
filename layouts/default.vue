@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :class="$style.wrapper">
     <Header />
     <NuxtPage />
   </div>
@@ -9,4 +9,4 @@
   import Header from '@/components/Header/index.vue';
 </script>
 
-<style></style>
+<style module type="scss" src="./layout.module.scss"></style>

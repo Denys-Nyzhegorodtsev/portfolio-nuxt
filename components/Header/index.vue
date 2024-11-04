@@ -1,23 +1,20 @@
 <template>
-  <header>
-    <NuxtLink to="/">Logo</NuxtLink>
-    <div>
-      <h1 :class="$style.title">Header</h1>
-      <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
-    </div>
-    <div>
-      <form>
-        <label for="locale-select">{{ $t('language') }}: </label>
-        <select
-          id="locale-select"
-          v-model="selectedLocale"
-          @change="changeLocale"
-        >
-          <option value="en">en</option>
-          <option value="ua">ua</option>
-        </select>
-      </form>
-      <button @click="$toggleTheme()">Змінити тему</button>
+  <header :class="$style.header">
+    <div :class="['content-wrapper', 'flex-r', $style.hederContent]">
+      <NuxtLink to="/">Logo</NuxtLink>
+      <div>
+        <form>
+          <select
+            id="locale-select"
+            v-model="selectedLocale"
+            @change="changeLocale"
+          >
+            <option value="en">en</option>
+            <option value="ua">ua</option>
+          </select>
+        </form>
+        <button @click="$toggleTheme()">Змінити тему</button>
+      </div>
     </div>
   </header>
 </template>

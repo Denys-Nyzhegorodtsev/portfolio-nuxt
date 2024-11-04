@@ -80,11 +80,6 @@ describe('Header Component', () => {
         },
       },
     });
-
-    const title = wrapper.find('h1');
-    expect(title.exists()).toBe(true);
-    expect(title.text()).toBe('Header');
-    expect(title.classes().length).toBeGreaterThan(0);
   });
 
   it('calls $toggleTheme when triggered', () => {
