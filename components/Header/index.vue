@@ -13,14 +13,7 @@
             <option value="ua">ua</option>
           </select>
         </form>
-        <div @click="toggleTheme()">
-          <Icon
-            :icon="iconName"
-            :color="iconColor"
-            width="30px"
-            height="30px"
-          />
-        </div>
+        <ThemeSwitcher />
       </div>
     </div>
   </header>
@@ -28,7 +21,6 @@
 
 <script lang="ts" setup>
   import { ref, watch, onMounted, computed } from 'vue';
-  import { useColorMode } from '@vueuse/core';
   import { useRouter, useRoute } from 'vue-router';
   import { useI18n } from 'vue-i18n';
 
@@ -37,19 +29,6 @@
   const route = useRoute();
 
   const isMounted = ref(false);
-  const colorMode = useColorMode();
-  const theme = ref('dark');
-  const iconName = computed(() => {
-    console.log('Значення colorMode:', colorMode.value); // Додаємо логування
-    return colorMode.value === 'dark' ? 'sun' : 'moon';
-  });
-  const iconColor = computed(() =>
-    colorMode.value === 'dark' ? '#fff' : '#000'
-  );
-
-  const toggleTheme = () => {
-    colorMode.value = colorMode.value === 'dark' ? 'light' : 'dark';
-  };
 
   const selectedLocale = ref(locale.value);
 
