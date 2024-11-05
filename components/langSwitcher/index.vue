@@ -1,10 +1,5 @@
 <template>
-  <form>
-    <select id="locale-select" v-model="selectedLocale" @change="changeLocale">
-      <option value="en">en</option>
-      <option value="ua">ua</option>
-    </select>
-  </form>
+  <Select v-model="selectedLocale" />
 </template>
 
 <script lang="ts" setup>
@@ -23,6 +18,8 @@
     await router.push(`/${selectedLocale.value}${basePath}`);
     locale.value = selectedLocale.value;
   };
+
+  watch(selectedLocale, changeLocale);
 
   watch(
     () => route.params.locale,

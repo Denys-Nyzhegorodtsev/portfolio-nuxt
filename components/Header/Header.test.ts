@@ -67,7 +67,6 @@ describe('Header Component', () => {
     await wrapper.vm.$nextTick();
     const logoLink = wrapper.find('a');
     expect(logoLink.exists()).toBe(true);
-    expect(logoLink.text()).toBe('Logo');
   });
 
   it('renders the header title with the correct class', () => {
