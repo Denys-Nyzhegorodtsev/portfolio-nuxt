@@ -1,7 +1,7 @@
 <template>
   <header :class="$style.header">
     <div :class="['content-wrapper', 'flex-r', $style.hederContent]">
-      <NuxtLink to="/">Logo</NuxtLink>
+      <NuxtLink to="/"> Logo </NuxtLink>
       <div>
         <form>
           <select
@@ -13,14 +13,24 @@
             <option value="ua">ua</option>
           </select>
         </form>
-        <button @click="$toggleTheme()">Змінити тему</button>
+        <div @click="toggleTheme()">
+          {{ theme }}
+          {{ iconName }}
+          {{ iconColor }}
+          <Icon
+            :icon="iconName"
+            :color="iconColor"
+            width="30px"
+            height="30px"
+          />
+        </div>
       </div>
     </div>
   </header>
 </template>
 
 <script lang="ts" setup>
-  import { ref, watch, onMounted } from 'vue';
+  import { ref, watch, onMounted, computed } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
   import { useI18n } from 'vue-i18n';
   import { useNuxtApp } from '#app';
@@ -30,10 +40,26 @@
   const route = useRoute();
   const nuxtApp = useNuxtApp();
 
-  // Оголошуємо $toggleTheme явно
-  const $toggleTheme = nuxtApp.$toggleTheme as () => void;
+  const isClient = !nuxtApp.ssrContext;
+  const theme = ref('dark');
+  const iconName = computed(() => (theme.value === 'dark' ? 'sun' : 'moon'));
+  const iconColor = computed(() => (theme.value === 'dark' ? '#fff' : '#000'));
 
-  // Ініціалізуємо `selectedLocale` зі значенням `locale.value`
+  onMounted(() => {
+    if (process.client) {
+      theme.value = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', theme.value);
+    }
+  });
+
+  const toggleTheme = () => {
+    theme.value = theme.value === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', theme.value);
+    if (isClient) {
+      localStorage.setItem('theme', theme.value);
+    }
+  };
+
   const selectedLocale = ref(locale.value);
 
   const changeLocale = async () => {

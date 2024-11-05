@@ -2,6 +2,7 @@
   <div :class="$style.wrapper">
     <Header />
     <NuxtPage />
+    <footer>Footer</footer>
   </div>
 </template>
 
