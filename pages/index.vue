@@ -2,6 +2,7 @@
   <div>
     <h1>Home page</h1>
 
+    <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
     <NuxtLink :to="localePath('about')">About</NuxtLink>
   </div>
 </template>

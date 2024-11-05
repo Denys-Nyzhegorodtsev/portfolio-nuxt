@@ -9,7 +9,6 @@
   import { useColorMode } from '@vueuse/core';
   const colorMode = useColorMode();
 
-  // const theme = ref('dark');
   const iconName = computed(() => {
     return colorMode.value === 'dark' ? 'sun' : 'moon';
   });
