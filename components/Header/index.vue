@@ -1,5 +1,5 @@
 <template>
-  <header :class="$style.header">
+  <header v-if="isMounted" :class="$style.header">
     <div :class="['content-wrapper', 'flex-r', $style.hederContent]">
       <NuxtLink to="/"> Logo </NuxtLink>
       <div>
@@ -14,9 +14,6 @@
           </select>
         </form>
         <div @click="toggleTheme()">
-          {{ theme }}
-          {{ iconName }}
-          {{ iconColor }}
           <Icon
             :icon="iconName"
             :color="iconColor"
@@ -31,33 +28,27 @@
 
 <script lang="ts" setup>
   import { ref, watch, onMounted, computed } from 'vue';
+  import { useColorMode } from '@vueuse/core';
   import { useRouter, useRoute } from 'vue-router';
   import { useI18n } from 'vue-i18n';
-  import { useNuxtApp } from '#app';
 
   const { locale } = useI18n();
   const router = useRouter();
   const route = useRoute();
-  const nuxtApp = useNuxtApp();
 
-  const isClient = !nuxtApp.ssrContext;
+  const isMounted = ref(false);
+  const colorMode = useColorMode();
   const theme = ref('dark');
-  const iconName = computed(() => (theme.value === 'dark' ? 'sun' : 'moon'));
-  const iconColor = computed(() => (theme.value === 'dark' ? '#fff' : '#000'));
-
-  onMounted(() => {
-    if (process.client) {
-      theme.value = localStorage.getItem('theme') || 'dark';
-      document.documentElement.setAttribute('data-theme', theme.value);
-    }
+  const iconName = computed(() => {
+    console.log('Значення colorMode:', colorMode.value); // Додаємо логування
+    return colorMode.value === 'dark' ? 'sun' : 'moon';
   });
+  const iconColor = computed(() =>
+    colorMode.value === 'dark' ? '#fff' : '#000'
+  );
 
   const toggleTheme = () => {
-    theme.value = theme.value === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', theme.value);
-    if (isClient) {
-      localStorage.setItem('theme', theme.value);
-    }
+    colorMode.value = colorMode.value === 'dark' ? 'light' : 'dark';
   };
 
   const selectedLocale = ref(locale.value);
@@ -85,6 +76,7 @@
 
   // Синхронізуємо `selectedLocale` при завантаженні сторінки
   onMounted(() => {
+    isMounted.value = true;
     selectedLocale.value = locale.value;
   });
 </script>
