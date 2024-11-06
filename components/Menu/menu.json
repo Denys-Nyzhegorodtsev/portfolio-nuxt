@@ -1,14 +1,17 @@
 {
   "menu": [
     {
+      "id": 1,
       "title": "About",
       "url": "about"
     },
     {
+      "id": 2,
       "title": "Info",
       "url": "info"
     },
     {
+      "id": 3,
       "title": "Blog",
       "url": "blog"
     }

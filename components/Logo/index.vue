@@ -1,12 +1,5 @@
 <template>
-  <!-- <div :class="$style.logo">
-    <div :class="$style.firstLetter">
-      <span>D</span>
-      <span>D</span>
-    </div>
-    <span>N</span>
-  </div> -->
-  <div :class="[$style.logo, $style[colorMode]]"></div>
+  <div :class="[$style.logo, $style[colorMode]]" />
 </template>
 
 <script lang="ts" setup>

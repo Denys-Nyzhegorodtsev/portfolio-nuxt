@@ -69,19 +69,6 @@ describe('Header Component', () => {
     expect(logoLink.exists()).toBe(true);
   });
 
-  it('renders the header title with the correct class', () => {
-    const wrapper = mount(Header, {
-      global: {
-        plugins: [i18n],
-        stubs: {
-          NuxtLink: {
-            template: '<a><slot /></a>',
-          },
-        },
-      },
-    });
-  });
-
   it('calls $toggleTheme when triggered', () => {
     const { $toggleTheme } = useNuxtApp() as unknown as {
       $toggleTheme: ReturnType<typeof vi.fn>;

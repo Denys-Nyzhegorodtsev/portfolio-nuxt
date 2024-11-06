@@ -14,7 +14,22 @@
 </template>
 
 <script lang="ts" setup>
-  defineProps(['text', 'url', 'type']);
+  const props = defineProps({
+    text: {
+      type: String,
+      default: '',
+    },
+    url: {
+      type: String,
+      default: '',
+    },
+    type: {
+      type: String,
+      default: '',
+    },
+  });
+
+  const { text, url, type } = props;
 </script>
 
 <style module type="scss" src="./Button.module.scss"></style>

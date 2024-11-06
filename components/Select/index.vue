@@ -3,11 +3,11 @@
     <div class="selected-option" @click="toggleOptions">
       {{ selectedLabel }}
     </div>
-    <div :class="$style.options" v-if="isOpen">
+    <div v-if="isOpen" :class="$style.options">
       <div
-        :class="$style.option"
         v-for="option in options"
         :key="option.value"
+        :class="$style.option"
         @click="selectOption(option)"
       >
         {{ option.label }}

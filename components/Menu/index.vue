@@ -1,7 +1,7 @@
 <template>
   <nav :class="$style.menu">
     <ul :class="['flex-r', $style.menuList]">
-      <li v-for="item in menu">
+      <li v-for="item in menu" :key="item.id">
         <NuxtLink :to="localePath(item.url)">{{ item.title }}</NuxtLink>
       </li>
     </ul>
@@ -10,13 +10,11 @@
 
 <script lang="ts" setup>
   import { useLocalePath } from '#i18n';
-
-  const localePath = useLocalePath();
   import menuData from './menu.json';
 
-  const { menu } = menuData;
+  const localePath = useLocalePath();
 
-  console.log('menuData', menu);
+  const { menu } = menuData;
 </script>
 
 <style module type="scss" src="./Menu.module.scss"></style>
