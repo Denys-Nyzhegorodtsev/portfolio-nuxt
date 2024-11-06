@@ -1,68 +1,35 @@
 <template>
-  <header>
-    <NuxtLink to="/">Logo</NuxtLink>
-    <div>
-      <h1 :class="$style.title">Header</h1>
-      <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
-    </div>
-    <div>
-      <form>
-        <label for="locale-select">{{ $t('language') }}: </label>
-        <select
-          id="locale-select"
-          v-model="selectedLocale"
-          @change="changeLocale"
-        >
-          <option value="en">en</option>
-          <option value="ua">ua</option>
-        </select>
-      </form>
-      <button @click="$toggleTheme()">Змінити тему</button>
+  <header v-if="isMounted" :class="$style.header">
+    <div :class="['content-wrapper', 'flex-r', $style.hederContent]">
+      <NuxtLink :class="$style.logo" to="/">
+        <Logo />
+      </NuxtLink>
+
+      <Menu />
+
+      <div :class="['flex-r', $style.buttonsWrapper]">
+        <LangSwitcher />
+        <ThemeSwitcher />
+        <Button
+          text="Download CV"
+          type="download"
+          :url="`${baseURL}/public/docs/CV-Denys-Nyzhehorodtsev.pdf`"
+        />
+      </div>
     </div>
   </header>
 </template>
 
 <script lang="ts" setup>
-  import { ref, watch, onMounted } from 'vue';
-  import { useRouter, useRoute } from 'vue-router';
-  import { useI18n } from 'vue-i18n';
-  import { useNuxtApp } from '#app';
+  import { ref, onMounted } from 'vue';
+  const baseURL = import.meta.env.BASE_URL || '/_nuxt/';
 
-  const { locale } = useI18n();
-  const router = useRouter();
-  const route = useRoute();
-  const nuxtApp = useNuxtApp();
-
-  // Оголошуємо $toggleTheme явно
-  const $toggleTheme = nuxtApp.$toggleTheme as () => void;
-
-  // Ініціалізуємо `selectedLocale` зі значенням `locale.value`
-  const selectedLocale = ref(locale.value);
-
-  const changeLocale = async () => {
-    const basePath = route.path.replace(/^\/(en|ua)/, ''); // Очищаємо URL від попередньої локалі
-    await router.push(`/${selectedLocale.value}${basePath}`); // Додаємо нову локаль до URL
-    locale.value = selectedLocale.value; // Оновлюємо значення локалі
-  };
-
-  // Спостерігаємо за змінами параметра `locale` в URL
-  watch(
-    () => route.params.locale,
-    (newLocale) => {
-      const normalizedLocale = Array.isArray(newLocale)
-        ? newLocale[0]
-        : newLocale;
-      if (normalizedLocale && normalizedLocale !== locale.value) {
-        locale.value = normalizedLocale; // Оновлюємо поточну локаль
-        selectedLocale.value = normalizedLocale; // Оновлюємо вибрану локаль
-      }
-    },
-    { immediate: true } // Викликаємо watch одразу при завантаженні
-  );
+  const isMounted = ref(false);
 
   // Синхронізуємо `selectedLocale` при завантаженні сторінки
   onMounted(() => {
-    selectedLocale.value = locale.value;
+    isMounted.value = true;
+    // selectedLocale.value = locale.value;
   });
 </script>
 

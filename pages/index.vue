@@ -2,10 +2,15 @@
   <div>
     <h1>Home page</h1>
 
-    <!--<NuxtLink to="/about">About</NuxtLink>-->
+    <h1>{{ $t('hello', { name: 'vue-i18n' }) }}</h1>
+    <NuxtLink :to="localePath('about')">About</NuxtLink>
   </div>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+  import { useLocalePath } from '#i18n';
+
+  const localePath = useLocalePath();
+</script>
 
 <style></style>

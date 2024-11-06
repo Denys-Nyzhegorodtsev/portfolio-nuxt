@@ -1,0 +1,35 @@
+.customSelect {
+  position: relative;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.selectedOption {
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.options {
+  position: absolute;
+  left: -50%;
+  background-color: var(--color-gray-default);
+  border-radius: 0 0 8px 8px;
+  border-top: none;
+  max-height: 150px;
+  overflow-y: auto;
+  transform: translateX(50%);
+  transition: all ease-in-out 0.3s;
+  z-index: 1000;
+}
+
+.option {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #f1f1f1;
+  }
+}

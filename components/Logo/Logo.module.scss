@@ -1,0 +1,54 @@
+// .logo {
+//   width: 61px;
+//   display: flex;
+//   font-size: 40px;
+//   font-weight: bold;
+//   border: 2px solid var(--color-gray-600);
+//   border-right: none;
+//   border-left: none;
+
+//   span {
+//     display: inline-block;
+//     position: relative;
+
+//     &:first-child {
+//       z-index: 10;
+//     }
+
+//     &:last-child {
+//       z-index: 1;
+//       transform: translateX(-5px);
+//     }
+//   }
+// }
+
+// .firstLetter {
+//   width: 30px;
+//   height: 40px;
+//   position: relative;
+//   z-index: 10;
+
+//   span {
+//     &:last-child {
+//       position: absolute;
+//       top: 0;
+//       left: 7px;
+//       top: -2px;
+//       color: var(--color-gray-50);
+//       font-size: 44px;
+//       color: var(--color-gray-50);
+//     }
+//   }
+// }
+
+.logo {
+  width: 40px;
+  height: 40px;
+  background: url('/assets/images/logo-light.png') no-repeat 0 0;
+  background-size: contain;
+
+  &.dark {
+    background: url('/assets/images/logo-dark.png') no-repeat 0 0;
+    background-size: contain;
+  }
+}

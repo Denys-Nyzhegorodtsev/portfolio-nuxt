@@ -2,23 +2,58 @@ import { defineNuxtConfig } from 'nuxt/config';
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        {
+          rel: 'icon',
+          type: 'image/png',
+          sizes: '32x32',
+          href: '/favicon.png',
+        },
+      ],
+    },
+  },
   nitro: {
     output: {
       dir: '.output',
     },
   },
   devtools: { enabled: true },
-  css: ['@/assets/scss/theme.scss'],
+  css: [
+    '@/assets/scss/theme.scss',
+    '@/assets/scss/main.scss',
+    '@fortawesome/fontawesome-svg-core/styles.css',
+  ],
   vite: {
+    build: {
+      assetsInlineLimit: 0,
+    },
+    server: {
+      fs: {
+        strict: false,
+      },
+    },
     css: {
       preprocessorOptions: {
         scss: {
-          additionalData: `@use "/assets/scss/variables.scss";`,
+          additionalData: `
+          @use "/assets/scss/reset.scss";
+          @use "/assets/scss/variables.scss";
+          @use "/assets/scss/mixins.scss" as *;
+          `,
         },
       },
     },
   },
-  modules: ['@nuxtjs/i18n'],
+  fontawesome: {
+    icons: {
+      solid: ['sun'],
+      regular: ['sun'],
+    },
+  },
+  modules: ['@nuxtjs/i18n', '@vesp/nuxt-fontawesome'],
   i18n: {
     strategy: 'prefix',
     locales: [
