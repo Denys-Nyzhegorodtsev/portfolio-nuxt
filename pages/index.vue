@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { useLocalePath } from '#i18n'; // Імпортуємо useLocalePath
+  import { useLocalePath } from '#i18n';
 
   const localePath = useLocalePath();
 </script>

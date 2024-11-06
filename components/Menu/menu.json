@@ -1,0 +1,16 @@
+{
+  "menu": [
+    {
+      "title": "About",
+      "url": "about"
+    },
+    {
+      "title": "Info",
+      "url": "info"
+    },
+    {
+      "title": "Blog",
+      "url": "blog"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+.button {
+  border-radius: 8px;
+  background-color: var(--color-gray-900);
+  color: var(--color-gray-50);
+  white-space: nowrap;
+  padding: 6px 16px;
+  cursor: pointer;
+  border: none;
+
+  &:hover {
+    background-color: var(--color-gray-700);
+  }
+}

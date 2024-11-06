@@ -4,9 +4,14 @@
       <NuxtLink :class="$style.logo" to="/">
         <Logo />
       </NuxtLink>
+
+      <Menu />
+
       <div :class="['flex-r', $style.buttonsWrapper]">
         <LangSwitcher />
+        <!-- <Switcher /> -->
         <ThemeSwitcher />
+        <Button />
       </div>
     </div>
   </header>

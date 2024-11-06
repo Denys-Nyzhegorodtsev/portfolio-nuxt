@@ -1,7 +1,9 @@
 <template>
-  <div :class="$style.themeSwitcher" @click="toggleTheme()">
-    <Icon :icon="iconName" :color="iconColor" width="30px" height="30px" />
-  </div>
+  <Switcher>
+    <div :class="$style.themeSwitcher" @click="toggleTheme()">
+      <Icon :icon="iconName" :color="iconColor" width="20px" height="20px" />
+    </div>
+  </Switcher>
 </template>
 
 <script lang="ts" setup>
