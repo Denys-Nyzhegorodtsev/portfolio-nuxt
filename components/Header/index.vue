@@ -9,9 +9,12 @@
 
       <div :class="['flex-r', $style.buttonsWrapper]">
         <LangSwitcher />
-        <!-- <Switcher /> -->
         <ThemeSwitcher />
-        <Button />
+        <Button
+          text="Download CV"
+          type="download"
+          :url="`${baseURL}/public/docs/CV-Denys-Nyzhehorodtsev.pdf`"
+        />
       </div>
     </div>
   </header>
@@ -19,6 +22,7 @@
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue';
+  const baseURL = import.meta.env.BASE_URL || '/_nuxt/';
 
   const isMounted = ref(false);
 

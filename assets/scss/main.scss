@@ -12,6 +12,10 @@ body {
   flex-direction: column;
 }
 
+a {
+  text-decoration: none;
+}
+
 .content-wrapper {
   width: 100%;
   max-width: 1280px;
