@@ -1,0 +1,55 @@
+.menuButton {
+  width: 24px;
+  position: relative;
+  padding: 6px 4px;
+  box-sizing: border-box;
+  justify-content: space-between;
+  cursor: pointer;
+  gap: 4px;
+
+  span {
+    width: 16px;
+    height: 2px;
+    background-color: var(--color-gray-600);
+    transition: all ease-in-out 0.3s;
+  }
+
+  &.open {
+    .firstLine {
+      transform: rotate(45deg) translate(4.6px, 4.6px);
+    }
+    .secondLine {
+      transform: scale(0);
+    }
+    .thirdLine {
+      transform: rotate(-45deg) translate(4px, -4px);
+    }
+  }
+}
+
+.menuWrapper {
+  border-top: 1px solid var(--color-gray-200);
+  border-bottom: 1px solid var(--color-gray-200);
+  padding-block: 30px;
+}
+
+.menuContent {
+  width: 100%;
+  height: calc(100% - 68px);
+  background-color: var(--color-gray-50);
+  position: absolute;
+  transform: translateX(100%);
+  transition: all ease-in-out 0.3s;
+  margin-bottom: 40px;
+  left: 0;
+  top: 68px;
+
+  &.show {
+    transform: translateX(0);
+  }
+}
+
+.buttonsWrapper {
+  justify-content: space-between;
+  margin: 30px 0;
+}
