@@ -10,6 +10,6 @@ export default defineConfig({
     alias: {
       '#app': fileURLToPath(new URL('./__mocks__/app.ts', import.meta.url)), // Вказуємо точний файл
     },
-    exclude: ['**/node_modules/**'], // Виняток для node_modules
+    exclude: ['**/node_modules/**', '**/.history/**'], // Виняток для node_modules
   },
 });
