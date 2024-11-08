@@ -1,9 +1,14 @@
 <template>
-  <button v-if="type === 'button'" :class="$style.button">{{ text }}</button>
+  <button
+    v-if="type === 'button'"
+    :class="[$style.button, size === 'big' ? $style.big : '']"
+  >
+    {{ text }}
+  </button>
   <a
     v-if="type === 'download'"
     :href="url"
-    :class="$style.button"
+    :class="[$style.button, size === 'big' ? $style.big : '']"
     download="CV-Denys-Nyzhehorodtsev.pdf"
   >
     {{ text }}
@@ -24,6 +29,10 @@
       default: '',
     },
     type: {
+      type: String,
+      default: '',
+    },
+    size: {
       type: String,
       default: '',
     },

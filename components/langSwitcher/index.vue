@@ -1,5 +1,5 @@
 <template>
-  <Select v-model="selectedLocale" />
+  <Select v-model="selectedLocale" :options="options" />
 </template>
 
 <script lang="ts" setup>
@@ -10,6 +10,16 @@
   const { locale } = useI18n();
   const router = useRouter();
   const route = useRoute();
+
+  interface Option {
+    label: string;
+    value: string;
+  }
+
+  const options = ref<Option[]>([
+    { label: 'en', value: 'en' },
+    { label: 'ua', value: 'ua' },
+  ]);
 
   const selectedLocale = ref(locale.value);
 
