@@ -53,7 +53,7 @@ export default defineNuxtConfig({
       regular: ['sun'],
     },
   },
-  modules: ['@nuxtjs/i18n', '@vesp/nuxt-fontawesome'],
+  modules: ['@nuxtjs/i18n', '@vesp/nuxt-fontawesome', 'nuxt-viewport'],
   i18n: {
     strategy: 'prefix',
     locales: [
