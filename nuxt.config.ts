@@ -21,11 +21,7 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
-  css: [
-    '@/assets/scss/theme.scss',
-    '@/assets/scss/main.scss',
-    '@fortawesome/fontawesome-svg-core/styles.css',
-  ],
+  css: ['@/assets/scss/theme.scss', '@/assets/scss/main.scss'],
   vite: {
     build: {
       assetsInlineLimit: 0,
@@ -47,13 +43,7 @@ export default defineNuxtConfig({
       },
     },
   },
-  fontawesome: {
-    icons: {
-      solid: ['sun'],
-      regular: ['sun'],
-    },
-  },
-  modules: ['@nuxtjs/i18n', '@vesp/nuxt-fontawesome', 'nuxt-viewport'],
+  modules: ['@nuxtjs/i18n', 'nuxt-viewport'],
   i18n: {
     strategy: 'prefix',
     locales: [
