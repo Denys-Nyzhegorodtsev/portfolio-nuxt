@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <MobileHeader />
+    <HeaderMobile />
     <NuxtPage />
     <Footer />
   </div>
