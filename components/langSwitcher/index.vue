@@ -35,12 +35,14 @@
   watch(
     () => route.params.locale,
     (newLocale) => {
+      console.log('Watch triggered with:', newLocale);
       const normalizedLocale = Array.isArray(newLocale)
         ? newLocale[0]
         : newLocale;
       if (normalizedLocale && normalizedLocale !== locale.value) {
         locale.value = normalizedLocale;
         selectedLocale.value = normalizedLocale;
+        console.log('Locale updated to:', normalizedLocale);
       }
     },
     { immediate: true }

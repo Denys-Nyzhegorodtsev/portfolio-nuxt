@@ -10,8 +10,8 @@
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
     "test": "vitest run",
-    "test:upd": "vitest --update",
-    "test:cov": "vitest run --coverage"
+    "test:cov": "vitest run --coverage",
+    "test:upd": "npm run test -- --update"
   },
   "dependencies": {
     "@nuxtjs/i18n": "^8.5.6",
