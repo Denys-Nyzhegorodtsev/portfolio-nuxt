@@ -7,6 +7,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     globals: true,
+    setupFiles: './setupTests.ts',
     alias: {
       '#app': fileURLToPath(new URL('./__mocks__/app.ts', import.meta.url)), // Вказуємо точний файл
     },

@@ -22,14 +22,16 @@
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue';
-  const baseURL = import.meta.env.BASE_URL || '/_nuxt/';
+  // const baseURL = import.meta.env.BASE_URL || '/_nuxt/';
+
+  const props = defineProps<{
+    baseURL: string;
+  }>();
 
   const isMounted = ref(false);
 
-  // Синхронізуємо `selectedLocale` при завантаженні сторінки
   onMounted(() => {
     isMounted.value = true;
-    // selectedLocale.value = locale.value;
   });
 </script>
 

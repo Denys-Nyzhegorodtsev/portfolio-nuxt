@@ -5,6 +5,7 @@
 <script lang="ts" setup>
   import { ref, watch, onMounted } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
+  import Select from '../Select/index.vue';
   import { useI18n } from 'vue-i18n';
 
   const { locale } = useI18n();

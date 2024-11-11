@@ -1,20 +1,59 @@
-// components/Header/Header.test.ts
-// import { createI18n } from 'vue-i18n';
-// import en from '../../locales/en.json';
-// import ua from '../../locales/ua.json';
-// import { useNuxtApp } from '../../__mocks__/app';
-
 import { mount } from '@vue/test-utils';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import Header from './index.vue';
 
-describe('Header render', () => {
-  it('render correctly', () => {
-    const wrapper = mount(Header);
+describe('Header Component', () => {
+  it('renders correctly with mocked BASE_URL', async () => {
+    const wrapper = mount(Header, {
+      props: {
+        baseURL: '/mocked_url/', // Передаємо baseURL як пропс
+      },
+      global: {
+        stubs: [
+          'NuxtLink',
+          'Logo',
+          'Menu',
+          'LangSwitcher',
+          'ThemeSwitcher',
+          'Button',
+        ],
+      },
+    });
+
+    Object.defineProperty(wrapper.vm, 'isMounted', {
+      value: true,
+      writable: true,
+    });
+
+    await wrapper.vm.$nextTick();
 
     expect(wrapper.exists()).toBe(true);
+    expect(wrapper.html()).toContain('/mocked_url/');
   });
 });
+
+// import { mount } from '@vue/test-utils';
+// import { describe, it, expect, vi, beforeEach } from 'vitest';
+// import Header from './index.vue';
+
+// describe('Header render', () => {
+//   it('render correctly', () => {
+//     const wrapper = mount(Header, {
+//       global: {
+//         stubs: [
+//           'NuxtLink',
+//           'Logo',
+//           'Menu',
+//           'LangSwitcher',
+//           'ThemeSwitcher',
+//           'Button',
+//         ],
+//       },
+//     });
+
+//     expect(wrapper.exists()).toBe(true);
+//   });
+// });
 
 // const i18n = createI18n({
 //   legacy: false,

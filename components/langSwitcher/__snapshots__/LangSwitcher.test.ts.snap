@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`LangSwitcher Component > renders correctly with snapshot 1`] = `
+"<div class="custom-select _customSelect_8795fe _close_8795fe">
+  <div class="_selectedOption_8795fe">en</div>
+  <div class="_options_8795fe">
+    <div class="_option_8795fe">en</div>
+    <div class="_option_8795fe">ua</div>
+  </div>
+</div>"
+`;
