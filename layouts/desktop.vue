@@ -1,6 +1,6 @@
 <template>
   <div :class="$style.wrapper">
-    <Header :baseURL="baseURL" />
+    <Header :base-url="baseURL" />
     <NuxtPage />
     <Footer />
   </div>

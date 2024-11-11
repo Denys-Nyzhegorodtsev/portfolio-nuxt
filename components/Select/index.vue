@@ -23,14 +23,7 @@
 </template>
 
 <script setup lang="ts">
-  import {
-    ref,
-    onMounted,
-    onBeforeUnmount,
-    defineProps,
-    defineEmits,
-    watch,
-  } from 'vue';
+  import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 
   interface Option {
     label: string;

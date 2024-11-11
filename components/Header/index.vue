@@ -13,7 +13,7 @@
         <Button
           text="Download CV"
           type="download"
-          :url="`${baseURL}/public/docs/CV-Denys-Nyzhehorodtsev.pdf`"
+          :url="`${props.baseUrl}public/docs/CV-Denys-Nyzhehorodtsev.pdf`"
         />
       </div>
     </div>
@@ -25,7 +25,7 @@
   // const baseURL = import.meta.env.BASE_URL || '/_nuxt/';
 
   const props = defineProps<{
-    baseURL: string;
+    baseUrl: string;
   }>();
 
   const isMounted = ref(false);
