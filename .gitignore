@@ -27,7 +27,6 @@ tmp/
 # Vue Specific
 .vuepress/dist/
 .vscode/
-public/
 .DS_Store
 
 # Vite
@@ -57,3 +56,5 @@ coverage/
 # Nuxt.js specific
 .nuxt/
 output/
+# Local Netlify folder
+.netlify
