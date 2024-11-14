@@ -6,7 +6,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <use
-      :href="`/assets/images/sprite.svg?v=1.3#${currentIcon}`"
+      :href="`/assets/images/sprite.svg?v=1.4#${currentIcon}`"
       :fill="currentColor"
       :stroke="currentColor"
     />

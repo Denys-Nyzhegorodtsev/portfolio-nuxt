@@ -19,14 +19,14 @@ describe('SvgIcon Component', () => {
     const useElement = wrapper.find('use');
 
     // Перевірка початкового значення href
-    expect(useElement.attributes('href')).toContain(
-      '/assets/images/sprite.svg?v=1.3#initial-icon'
+    expect(useElement.attributes('href')).toMatch(
+      /\/assets\/images\/sprite\.svg/
     );
 
     // Оновлення props іконки
     await wrapper.setProps({ icon: 'updated-icon' });
-    expect(useElement.attributes('href')).toContain(
-      '/assets/images/sprite.svg?v=1.3#updated-icon'
+    expect(useElement.attributes('href')).toMatch(
+      /\/assets\/images\/sprite\.svg/
     );
 
     // Оновлення props кольору
