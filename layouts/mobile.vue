@@ -1,13 +1,15 @@
 <template>
   <div :class="$style.wrapper">
-    <HeaderMobile :base-url="baseURL" />
+    <HeaderMobile :base-url="baseUrl" />
     <NuxtPage />
     <Footer />
   </div>
 </template>
 
 <script lang="ts" setup>
-  const baseURL = import.meta.env.BASE_URL || '/_nuxt/';
+  import { inject } from 'vue';
+
+  const baseUrl = inject('baseUrl') as string;
 </script>
 
 <style module type="scss" src="./layout.module.scss"></style>
