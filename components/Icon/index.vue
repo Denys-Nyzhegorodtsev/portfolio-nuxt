@@ -6,7 +6,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <use
-      :href="`${baseUrl}assets/images/sprite.svg?v=1.3#${currentIcon}`"
+      :href="`/assets/images/sprite.svg?v=1.3#${currentIcon}`"
       :fill="currentColor"
       :stroke="currentColor"
     />
@@ -14,9 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { watch, inject, ref } from 'vue';
-
-  const baseUrl = inject('baseUrl') as string;
+  import { watch, ref } from 'vue';
 
   // Приймаємо вхідні параметри: іконку, колір, ширину і висоту
   const props = defineProps({
