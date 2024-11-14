@@ -6,7 +6,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <use
-      :href="`${baseURL}assets/images/sprite.svg?v=1.3#${currentIcon}`"
+      :href="`${baseUrl}assets/images/sprite.svg?v=1.3#${currentIcon}`"
       :fill="currentColor"
       :stroke="currentColor"
     />
@@ -14,10 +14,9 @@
 </template>
 
 <script lang="ts" setup>
-  import { watch, ref } from 'vue';
+  import { watch, inject, ref } from 'vue';
 
-  // Базовий URL для випадку, якщо файл SVG спрайта розміщено в /assets/images/
-  const baseURL = import.meta.env.BASE_URL || '/_nuxt/';
+  const baseUrl = inject('baseUrl') as string;
 
   // Приймаємо вхідні параметри: іконку, колір, ширину і висоту
   const props = defineProps({
