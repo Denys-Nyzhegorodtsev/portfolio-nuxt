@@ -24,7 +24,7 @@
           text="Download CV"
           type="download"
           size="big"
-          :url="`${baseURL}/public/docs/CV-Denys-Nyzhehorodtsev.pdf`"
+          :url="`${props.baseUrl}/public/docs/CV-Denys-Nyzhehorodtsev.pdf`"
         />
       </div>
     </div>
@@ -33,7 +33,10 @@
 
 <script lang="ts" setup>
   import { ref } from 'vue';
-  const baseURL = import.meta.env.BASE_URL || '/_nuxt/';
+
+  const props = defineProps<{
+    baseUrl: string;
+  }>();
 
   const isOpen = ref(false);
 

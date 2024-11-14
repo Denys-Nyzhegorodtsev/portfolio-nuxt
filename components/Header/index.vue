@@ -22,7 +22,6 @@
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue';
-  // const baseURL = import.meta.env.BASE_URL || '/_nuxt/';
 
   const props = defineProps<{
     baseUrl: string;
