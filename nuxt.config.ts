@@ -34,6 +34,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern-compiler',
           additionalData: `
           @use "/assets/scss/reset.scss";
           @use "/assets/scss/variables.scss";
@@ -47,8 +48,8 @@ export default defineNuxtConfig({
   i18n: {
     strategy: 'prefix',
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.json' },
-      { code: 'ua', iso: 'uk-UA', file: 'ua.json' },
+      { code: 'en', language: 'en-US', file: 'en.json' },
+      { code: 'ua', language: 'uk-UA', file: 'ua.json' },
     ],
     defaultLocale: 'en',
     langDir: 'locales/',
