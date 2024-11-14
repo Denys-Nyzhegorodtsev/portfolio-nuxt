@@ -5,13 +5,17 @@
         <Logo />
       </NuxtLink>
 
-      <MobileMenu />
+      <MobileMenu :base-url="props.baseUrl" />
     </div>
   </header>
 </template>
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue';
+
+  const props = defineProps<{
+    baseUrl: string;
+  }>();
 
   const isMounted = ref(false);
 
