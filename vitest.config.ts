@@ -10,6 +10,7 @@ export default defineConfig({
     setupFiles: './setupTests.ts',
     alias: {
       '#app': fileURLToPath(new URL('./__mocks__/app.ts', import.meta.url)), // Вказуємо точний файл
+      '#i18n': fileURLToPath(new URL('./__mocks__/i18n.ts', import.meta.url)),
     },
     exclude: ['**/node_modules/**', '**/.history/**'], // Виняток для node_modules
   },
