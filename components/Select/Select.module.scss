@@ -1,25 +1,47 @@
 .customSelect {
   position: relative;
   font-family: Arial, sans-serif;
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
+  border-radius: 8px 8px 0 0;
   cursor: pointer;
   padding: 10px;
+
+  &.open {
+    border-color: var(--color-gray-100);
+    .options {
+      top: 100%;
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+
+  &.close {
+    border-color: transparent;
+    .options {
+      opacity: 0;
+      top: -100%;
+      transition: all ease-in-out 0.3s;
+      pointer-events: none;
+    }
+  }
 }
 
 .selectedOption {
-  padding: 10px;
-  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: var(--color-gray-50);
   cursor: pointer;
 }
 
 .options {
   position: absolute;
-  left: -50%;
-  background-color: var(--color-gray-default);
+  left: -1px;
+  border: 1px solid var(--color-gray-100);
   border-radius: 0 0 8px 8px;
   border-top: none;
   max-height: 150px;
   overflow-y: auto;
-  transform: translateX(50%);
   transition: all ease-in-out 0.3s;
   z-index: 1000;
 }
@@ -28,8 +50,13 @@
   padding: 10px;
   cursor: pointer;
   transition: background-color 0.3s;
+  border-bottom: 1px solid var(--color-gray-100);
+
+  &:last-child {
+    border: none;
+  }
 
   &:hover {
-    background-color: #f1f1f1;
+    background-color: var(--color-gray-default);
   }
 }

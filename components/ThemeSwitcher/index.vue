@@ -14,6 +14,7 @@
   const iconName = computed(() => {
     return colorMode.value === 'dark' ? 'sun' : 'moon';
   });
+
   const iconColor = computed(() =>
     colorMode.value === 'dark' ? '#fff' : '#000'
   );

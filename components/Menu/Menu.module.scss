@@ -2,6 +2,26 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+
+  &.mobile {
+    justify-content: flex-start;
+
+    ul {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+
+      li {
+        width: 100%;
+      }
+
+      a {
+        width: 100%;
+        display: block;
+        padding-block: 20px;
+      }
+    }
+  }
 }
 
 .menuList {

@@ -21,11 +21,7 @@ export default defineNuxtConfig({
     },
   },
   devtools: { enabled: true },
-  css: [
-    '@/assets/scss/theme.scss',
-    '@/assets/scss/main.scss',
-    '@fortawesome/fontawesome-svg-core/styles.css',
-  ],
+  css: ['@/assets/scss/theme.scss', '@/assets/scss/main.scss'],
   vite: {
     build: {
       assetsInlineLimit: 0,
@@ -38,6 +34,7 @@ export default defineNuxtConfig({
     css: {
       preprocessorOptions: {
         scss: {
+          api: 'modern-compiler',
           additionalData: `
           @use "/assets/scss/reset.scss";
           @use "/assets/scss/variables.scss";
@@ -47,18 +44,12 @@ export default defineNuxtConfig({
       },
     },
   },
-  fontawesome: {
-    icons: {
-      solid: ['sun'],
-      regular: ['sun'],
-    },
-  },
-  modules: ['@nuxtjs/i18n', '@vesp/nuxt-fontawesome'],
+  modules: ['@nuxtjs/i18n', 'nuxt-viewport'],
   i18n: {
     strategy: 'prefix',
     locales: [
-      { code: 'en', iso: 'en-US', file: 'en.json' },
-      { code: 'ua', iso: 'uk-UA', file: 'ua.json' },
+      { code: 'en', language: 'en-US', file: 'en.json' },
+      { code: 'ua', language: 'uk-UA', file: 'ua.json' },
     ],
     defaultLocale: 'en',
     langDir: 'locales/',

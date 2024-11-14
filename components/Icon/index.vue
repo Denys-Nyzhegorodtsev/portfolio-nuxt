@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-  import { watch } from 'vue';
+  import { watch, ref } from 'vue';
 
   // Базовий URL для випадку, якщо файл SVG спрайта розміщено в /assets/images/
   const baseURL = import.meta.env.BASE_URL || '/_nuxt/';

@@ -1,9 +1,15 @@
 <template>
-  <div :class="['custom-select', $style.customSelect]">
-    <div class="selected-option" @click="toggleOptions">
+  <div
+    :class="[
+      'custom-select',
+      $style.customSelect,
+      isOpen ? $style.open : $style.close,
+    ]"
+  >
+    <div :class="$style.selectedOption" @click="toggleOptions">
       {{ selectedLabel }}
     </div>
-    <div v-if="isOpen" :class="$style.options">
+    <div :class="$style.options">
       <div
         v-for="option in options"
         :key="option.value"
@@ -17,14 +23,7 @@
 </template>
 
 <script setup lang="ts">
-  import {
-    ref,
-    onMounted,
-    onBeforeUnmount,
-    defineProps,
-    defineEmits,
-    watch,
-  } from 'vue';
+  import { ref, onMounted, onBeforeUnmount, watch } from 'vue';
 
   interface Option {
     label: string;
@@ -32,22 +31,18 @@
   }
 
   // Приймаємо пропс та еміт для v-model
-  const props = defineProps<{ modelValue: string }>();
+  const props = defineProps<{ modelValue: string; options: Option[] }>();
   const emit = defineEmits(['update:modelValue']);
 
   const isOpen = ref(false);
   const selectedLabel = ref('Select an option');
-
-  const options = ref<Option[]>([
-    { label: 'en', value: 'en' },
-    { label: 'ua', value: 'ua' },
-  ]);
+  const options = props.options;
 
   // Оновлюємо `selectedLabel` коли змінюється `modelValue`
   watch(
     () => props.modelValue,
     (newValue) => {
-      const selectedOption = options.value.find(
+      const selectedOption = options.find(
         (option) => option.value === newValue
       );
       if (selectedOption) {

@@ -2,11 +2,21 @@
   border-radius: 8px;
   background-color: var(--color-gray-900);
   color: var(--color-gray-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
   font-size: 14px;
   padding: 6px 16px;
   cursor: pointer;
   border: none;
+
+  &.big {
+    width: 100%;
+    padding-block: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
 
   &:hover {
     background-color: var(--color-gray-700);

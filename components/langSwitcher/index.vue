@@ -1,15 +1,26 @@
 <template>
-  <Select v-model="selectedLocale" />
+  <Select v-model="selectedLocale" :options="options" />
 </template>
 
 <script lang="ts" setup>
   import { ref, watch, onMounted } from 'vue';
   import { useRouter, useRoute } from 'vue-router';
+  import Select from '../Select/index.vue';
   import { useI18n } from 'vue-i18n';
 
   const { locale } = useI18n();
   const router = useRouter();
   const route = useRoute();
+
+  interface Option {
+    label: string;
+    value: string;
+  }
+
+  const options = ref<Option[]>([
+    { label: 'en', value: 'en' },
+    { label: 'ua', value: 'ua' },
+  ]);
 
   const selectedLocale = ref(locale.value);
 

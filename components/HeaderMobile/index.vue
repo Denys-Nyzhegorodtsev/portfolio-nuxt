@@ -5,17 +5,7 @@
         <Logo />
       </NuxtLink>
 
-      <Menu />
-
-      <div :class="['flex-r', $style.buttonsWrapper]">
-        <LangSwitcher />
-        <ThemeSwitcher />
-        <Button
-          text="Download CV"
-          type="download"
-          :url="`${props.baseUrl}public/docs/CV-Denys-Nyzhehorodtsev.pdf`"
-        />
-      </div>
+      <MobileMenu :base-url="props.baseUrl" />
     </div>
   </header>
 </template>
@@ -29,9 +19,10 @@
 
   const isMounted = ref(false);
 
+  // Синхронізуємо `selectedLocale` при завантаженні сторінки
   onMounted(() => {
     isMounted.value = true;
   });
 </script>
 
-<style module type="scss" src="./Header.module.scss"></style>
+<style module type="scss" src="./MobileHeader.module.scss"></style>
