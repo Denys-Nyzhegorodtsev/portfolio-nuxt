@@ -1,0 +1,25 @@
+{
+  "menu": [
+    {
+      "id": "fb",
+      "title": "facebook",
+      "url": "https://www.facebook.com/denis.nigegorodcev/",
+      "color": "#4460A0",
+      "bg": "true"
+    },
+    {
+      "id": "in",
+      "title": "linkedin",
+      "url": "https://www.linkedin.com/in/denis-nizhegorodcev-b4bb4441/",
+      "color": "#0A66C2",
+      "bg": "true"
+    },
+    {
+      "id": "gh",
+      "title": "github",
+      "url": "https://github.com/shtobnik",
+      "color": "#fff",
+      "bg": "false"
+    }
+  ]
+}

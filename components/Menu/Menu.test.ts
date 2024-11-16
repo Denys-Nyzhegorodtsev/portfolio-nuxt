@@ -3,10 +3,17 @@ import Menu from './index.vue';
 import { describe, it, expect } from 'vitest';
 
 describe('Menu Component', () => {
+  const mockLinks = [
+    { id: '1', title: 'About', url: '/about', color: 'red' },
+    { id: '2', title: 'Info', url: '/info', color: 'blue' },
+    { id: '3', title: 'Blog', url: '/blog', color: 'green' },
+  ];
+
   it('renders correctly with default type', () => {
     const wrapper = mount(Menu, {
       props: {
         type: '',
+        links: mockLinks,
       },
       global: {
         mocks: {

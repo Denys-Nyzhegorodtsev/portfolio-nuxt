@@ -33,3 +33,45 @@ a {
   @include flex;
   flex-direction: column;
 }
+
+.link {
+  position: relative;
+  transition: all ease-in-out 0.2s;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 0px;
+    height: 2px;
+    background-color: var(--color-white-default);
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    transform: translateX(-50%);
+    transition: width ease-in-out 0.2s;
+  }
+
+  &:hover {
+    color: var(--color-white-default);
+    &:after {
+      width: 100%;
+    }
+  }
+}
+
+.icon-link {
+  cursor: pointer;
+
+  & > div {
+    transform: scale(1);
+    transition: transform ease-in-out 0.2s;
+  }
+
+  &:hover {
+    color: var(--color-white-default);
+    & > div {
+      transform: scale(1.3);
+    }
+  }
+}
