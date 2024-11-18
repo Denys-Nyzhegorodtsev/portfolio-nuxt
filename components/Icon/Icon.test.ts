@@ -15,8 +15,6 @@ describe('SvgIcon Component', () => {
 
     const useElement = wrapper.find('use');
 
-    console.log('useElement', useElement.attributes('fill'));
-
     // Перевірка початкових значень атрибутів
     expect(useElement.attributes('href')).toContain('#initial-icon');
     expect(useElement.attributes('fill')).toBe('initialFill'); // color використовується, якщо fill відсутній

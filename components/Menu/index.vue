@@ -2,7 +2,11 @@
   <nav :class="[$style.menu, type === 'mobile' ? $style.mobile : '']">
     <ul
       :class="[
-        dir === 'col' ? [$style.vMenu, 'flex-c'] : 'flex-r',
+        dir === 'col'
+          ? [$style.vMenu, 'flex-c']
+          : dir === 'block'
+          ? [$style.blMenu, 'flex-r']
+          : [$style.hMenu, 'flex-r'],
         $style.menuList,
       ]"
     >
@@ -23,7 +27,7 @@
             "
           >
             <Icon
-              :icon="item.title"
+              :icon="item.id"
               :fill="item.color"
               width="20px"
               height="20px"
@@ -59,11 +63,12 @@
       default: () => [],
     },
     dir: {
-      type: String as PropType<'row' | 'col'>,
+      type: String as PropType<'row' | 'col' | 'block'>,
       default: 'row',
     },
     icons: {
       type: String as PropType<'true' | false>,
+      default: 'false',
     },
   });
 

@@ -1,23 +1,37 @@
 {
   "menu": [
     {
-      "id": "fb",
+      "id": "facebook",
       "title": "facebook",
       "url": "https://www.facebook.com/denis.nigegorodcev/",
       "color": "#4460A0",
       "bg": "true"
     },
     {
-      "id": "in",
+      "id": "linkedin",
       "title": "linkedin",
       "url": "https://www.linkedin.com/in/denis-nizhegorodcev-b4bb4441/",
       "color": "#0A66C2",
       "bg": "true"
     },
     {
-      "id": "gh",
+      "id": "github",
       "title": "github",
       "url": "https://github.com/shtobnik",
+      "color": "#fff",
+      "bg": "false"
+    },
+    {
+      "id": "phone",
+      "title": "+380994071480",
+      "url": "tel:+380994071480",
+      "color": "#fff",
+      "bg": "false"
+    },
+    {
+      "id": "email",
+      "title": "denis.nigegorodcev@gmail.com",
+      "url": "mailto:denis.nigegorodcev@gmail.com",
       "color": "#fff",
       "bg": "false"
     }

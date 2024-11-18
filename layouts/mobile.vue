@@ -4,7 +4,7 @@
     <div :class="['content-wrapper']">
       <NuxtPage />
     </div>
-    <Footer />
+    <Footer dir="col" />
   </div>
 </template>
 

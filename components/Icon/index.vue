@@ -6,7 +6,7 @@
     xmlns="http://www.w3.org/2000/svg"
   >
     <use
-      :href="`/assets/images/sprite.svg?v=3.1#${currentIcon}`"
+      :href="`/assets/images/sprite.svg?v=3.6#${currentIcon}`"
       v-bind="computedAttributesUse"
     />
   </svg>
@@ -15,6 +15,13 @@
 <script lang="ts" setup>
   import { ref, computed, watch } from 'vue';
   import { useColorMode } from '@vueuse/core';
+
+  type Props = {
+    readonly icon: string;
+    readonly color: string;
+    readonly stroke: string;
+    readonly fill: string;
+  };
 
   const props = defineProps({
     icon: { type: String, required: true },
@@ -54,47 +61,6 @@
     return attributes;
   });
 
-  // Реактивні атрибути для <use>
-  // const computedAttributesUse = computed(() => {
-  //   const attributes: Record<string, string> = {
-  //     fill: currentFill.value || 'transparent',
-  //     stroke: currentStroke.value || 'transparent',
-  //   };
-
-  //   if (currentStroke.value) {
-  //     attributes.stroke = currentStroke.value;
-  //   }
-
-  //   if (currentFill.value) {
-  //     attributes.fill = currentFill.value;
-  //   }
-  //   return attributes;
-  // });
-  // ---------
-  // const computedAttributesUse = computed(() => {
-  //   const attributes: Record<string, string> = {};
-
-  //   // Використовуємо колір, якщо він вказаний, або значення fill за замовчуванням
-  //   attributes.fill = currentColor.value || currentFill.value || 'transparent';
-
-  //   // Використовуємо значення stroke, якщо воно вказане
-  //   attributes.stroke = currentStroke.value || 'transparent';
-
-  //   return attributes;
-  // });
-  // ---------
-  // const computedAttributesUse = computed(() => {
-  //   const attributes: Record<string, string> = {};
-
-  //   // Використовуємо fill, якщо воно вказане, інакше беремо color
-  //   attributes.fill = currentFill.value || currentColor.value || 'transparent';
-
-  //   // Використовуємо stroke, якщо воно вказане
-  //   attributes.stroke = currentStroke.value || 'transparent';
-
-  //   return attributes;
-  // });
-  // ==========
   const computedAttributesUse = computed(() => {
     const attributes: Record<string, string> = {};
 
@@ -112,7 +78,7 @@
   watch(
     () => colorMode.value,
     (newTheme) => {
-      if (currentIcon.value === 'github') {
+      if (currentIcon.value === 'github' || currentIcon.value === 'phone') {
         // Перевіряємо, чи іконка — github
         currentFill.value = newTheme === 'dark' ? '#fff' : '#000';
       }
@@ -125,31 +91,24 @@
   );
 
   // Спостерігаємо за зміною props
-  watch(
-    () => props.icon,
-    (newIcon) => {
-      currentIcon.value = newIcon;
-    }
-  );
 
-  watch(
-    () => props.color,
-    (newColor) => {
-      currentColor.value = newColor;
-    }
-  );
+  type PropMappings = {
+    [K in keyof Props]: Ref<string>;
+  };
 
-  watch(
-    () => props.stroke,
-    (newStroke) => {
-      currentStroke.value = newStroke;
-    }
-  );
+  const propMappings: PropMappings = {
+    icon: currentIcon,
+    color: currentColor,
+    stroke: currentStroke,
+    fill: currentFill,
+  };
 
-  watch(
-    () => props.fill,
-    (newFill) => {
-      currentFill.value = newFill;
-    }
-  );
+  (Object.keys(propMappings) as Array<keyof Props>).forEach((prop) => {
+    watch(
+      () => props[prop],
+      (newValue) => {
+        propMappings[prop].value = newValue;
+      }
+    );
+  });
 </script>

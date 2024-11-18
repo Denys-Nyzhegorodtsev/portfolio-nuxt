@@ -1,5 +1,32 @@
 .footerContent {
   padding-block: 30px;
   align-items: flex-start;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
+
+.title {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+.contacts {
+  width: 305px;
+}
+
+// .variantsBlock {
+//   width: 240px;
+//   padding: 20px;
+//   border: 1px solid var(--color-gray-700);
+//   box-sizing: border-box;
+//   border-radius: 8px;
+//   position: relative;
+// }
+
+// .variantsTitle {
+//   background-color: var(--color-gray-50);
+//   padding: 5px;
+//   position: absolute;
+//   left: 20px;
+//   top: -14px;
+// }
