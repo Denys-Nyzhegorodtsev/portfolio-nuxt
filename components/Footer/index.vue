@@ -1,6 +1,12 @@
 <template>
   <footer>
-    <div :class="['content-wrapper', 'flex-r', $style.footerContent]">
+    <div
+      :class="[
+        'content-wrapper',
+        dir === 'row' ? 'flex-r' : $style.mobileFooter,
+        $style.footerContent,
+      ]"
+    >
       <section :class="$style.footerBlock">
         <h4 :class="$style.title">Menu</h4>
         <Menu dir="col" :links="menu" />
@@ -25,10 +31,17 @@
 <script lang="ts" setup>
   import { ref, onMounted, computed } from 'vue';
   import { useColorMode } from '@vueuse/core';
+  import { PropType } from 'vue';
   import menuData from '../Menu/menu.json';
   import socialsData from './socials.json';
   import socialsDataDark from './socials-dark.json';
   import variantsData from './variants.json';
+
+  const props = defineProps({
+    dir: { type: String as PropType<'row' | 'col'>, default: 'row' },
+  });
+
+  const { dir } = props;
 
   const colorMode = useColorMode();
 
