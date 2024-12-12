@@ -1,8 +1,10 @@
 <template>
   <div :class="$style.wrapper">
     <HeaderMobile :base-url="baseUrl" />
-    <NuxtPage />
-    <Footer />
+    <div :class="['content-wrapper']">
+      <NuxtPage />
+    </div>
+    <Footer dir="col" />
   </div>
 </template>
 

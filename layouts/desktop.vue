@@ -1,7 +1,9 @@
 <template>
   <div :class="$style.wrapper">
     <Header :base-url="baseUrl" />
-    <NuxtPage />
+    <div :class="['content-wrapper']">
+      <NuxtPage />
+    </div>
     <Footer />
   </div>
 </template>

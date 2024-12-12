@@ -5,7 +5,7 @@
         <Logo />
       </NuxtLink>
 
-      <Menu />
+      <Menu :links="menu" />
 
       <div :class="['flex-r', $style.buttonsWrapper]">
         <LangSwitcher />
@@ -22,11 +22,13 @@
 
 <script lang="ts" setup>
   import { ref, onMounted } from 'vue';
+  import menuData from '../Menu/menu.json';
 
   const props = defineProps<{
     baseUrl: string;
   }>();
 
+  const { menu } = menuData;
   const isMounted = ref(false);
 
   onMounted(() => {

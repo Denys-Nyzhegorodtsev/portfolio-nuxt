@@ -1,0 +1,46 @@
+{
+  "menu": [
+    {
+      "id": "vanilla",
+      "title": "vanilla",
+      "url": "vanilla",
+      "color": "#E9C112",
+      "bg": "false"
+    },
+    {
+      "id": "angular",
+      "title": "angular",
+      "url": "ng",
+      "color": "#4460A0",
+      "bg": "false"
+    },
+    {
+      "id": "react",
+      "title": "react",
+      "url": "react",
+      "color": "#4460A0",
+      "bg": "false"
+    },
+    {
+      "id": "next",
+      "title": "next",
+      "url": "next",
+      "color": "#4460A0",
+      "bg": "false"
+    },
+    {
+      "id": "vue",
+      "title": "vue",
+      "url": "vue",
+      "color": "#4460A0",
+      "bg": "false"
+    },
+    {
+      "id": "nuxt",
+      "title": "nuxt",
+      "url": "nuxt",
+      "color": "#4460A0",
+      "bg": "false"
+    }
+  ]
+}
