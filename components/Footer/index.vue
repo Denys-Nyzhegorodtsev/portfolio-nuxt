@@ -31,7 +31,7 @@
 <script lang="ts" setup>
   import { ref, onMounted, computed } from 'vue';
   import { useColorMode } from '@vueuse/core';
-  import { PropType } from 'vue';
+  import type { PropType } from 'vue';
   import menuData from '../Menu/menu.json';
   import socialsData from './socials.json';
   import socialsDataDark from './socials-dark.json';
